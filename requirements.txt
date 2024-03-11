@@ -6,4 +6,5 @@ matplotlib
 tabulate
 flask
 dill
+jsonify
 -e .
