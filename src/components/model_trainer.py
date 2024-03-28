@@ -72,7 +72,9 @@ class ModelTrainer:
                     'max_features': ['sqrt', 'log2']
                 },
                 "svm": {
-                        'kernel': ['linear', 'rbf'],
+                        'C': [0.001, 0.01, 0.1, 1, 10, 100],
+                        'kernel': ['linear', 'rbf', 'poly'],
+                        'gamma': ['scale', 'auto']
                 },
                 "Naive Bayes": {},
                 "Knn": {

@@ -78,6 +78,7 @@ def evaluate_models(X_train, y_train,X_test,y_test,models,param):
                 'test_model_f1': test_model_f1,
                 'test_model_roc_auc': test_model_roc_auc
             }
+        print(report)
 
         return report
 
