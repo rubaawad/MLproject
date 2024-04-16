@@ -86,6 +86,12 @@ class ModelTrainer:
                     'penalty': ['l2']
                 }
             }
+            # Specify scorers for grid search
+            scorers = {
+                'precision_score': make_scorer(precision_score),
+                'recall_score': make_scorer(recall_score),
+                'accuracy_score': make_scorer(accuracy_score)
+            }
 
             # Evaluate models using cross-validation and grid search
             model_report: dict = evaluate_models(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
@@ -95,9 +101,6 @@ class ModelTrainer:
             best_model_name, best_model_score = max(model_report.items(),
                                                     key=lambda x: (x[1]['test_model_accuracy'] + x[1]['test_model_f1']) / 2)
 
-            # If the best model's score is less than 0.6, raise a CustomException
-            if best_model_score < 0.6:
-                raise CustomException("No best model found")
 
             best_model = models[best_model_name]  # Select the best model
 

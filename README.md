@@ -53,13 +53,29 @@ Sure, here's a README file for your MLproject GitHub project:
     Run the Flask application: python app.py.
     Access the web application in your browser at http://localhost:5000.
 # Docker
-    Alternatively, you can run the project using Docker. First, ensure that Docker is installed on your system. Then, build the Docker image and run the container:
+    Usage Instructions:
+        Pull the Docker Image:
+            docker pull rubamahgoob/diabetes_app:latest
 
-    docker build -t mlproject .
-    docker run -it mlproject
+    Run the Docker Container:
+        docker run -d -p 5000:5000 rubamahgoob/diabetes_app:latest
 
-    also you can pull it from docker hub:
-        docker pull rubamahgoob/diabetes_app:latest
+    Access the Application:
+        Once the container is running, you can access the Flask application by navigating to http://localhost:5000 in your web browser.
+
+    Input Health Parameters:
+        On the home page of the application, you'll find a form where you can input various health parameters such as pregnancies, glucose levels, blood pressure, etc.
+
+    Get Prediction Results:
+        After entering the health parameters and clicking on the "Predict" button, the application will provide a prediction result indicating whether the individual is likely to have diabetes or not.
+
+    Note:	
+        Make sure Docker is installed and running on your system before pulling and running the Docker image.
+        Ensure that port 5000 is not being used by any other application on your system, as it is used by the Flask application to serve the web interface.
+        
+    You can customize the Docker container's port mapping if port 5000 is already in use on your system. For example, you can map it to a different port using the -p flag in the docker run command.
+
+
 
 # Contact
     For any questions or feedback, please contact the project maintainer:
