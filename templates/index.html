@@ -3,13 +3,13 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Diabetes Prediction</title>
-      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">  <!-- Link to external stylesheet -->
       <style>
          body {
-            background-image: url('static/backround_image.jpeg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-image: url('static/backround_image.jpeg'); /* Set background image */
+            background-size: cover;  /* Cover the entire background */
+            background-repeat: no-repeat;  /* Do not repeat the background */
+            background-attachment: fixed;  /* Fix the background position */
          }
       </style>
    </head>
@@ -47,12 +47,6 @@
             <h1>Diabetes Prediction Result</h1>
             <p  style="color: greenyellow !important;">The prediction result is: {{ prediction }}</p>
         </span>
-          <!-- <div id="predictionResult" class="prediction-container">
-              {% if prediction %}
-                  <h2>Diabetes Prediction Result</h2>
-                  <p class="prediction-result">{{ prediction }}</p>
-              {% endif %}
-          </div> -->
       </div>
   </body>
   </html>

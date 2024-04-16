@@ -11,6 +11,7 @@ from sklearn.model_selection import GridSearchCV
 
 from src.exception import CustomException
 
+
 def save_object(file_path, obj):
     """
     Save a Python object to a file using pickle serialization.
@@ -24,39 +25,54 @@ def save_object(file_path, obj):
     """
     try:
         dir_path = os.path.dirname(file_path)
-        os.makedirs(dir_path, exist_ok=True)
+        os.makedirs(dir_path, exist_ok=True)  # Create directory if it doesn't exist
         with open(file_path, "wb") as file_obj:
-            pickle.dump(obj, file_obj)
+            pickle.dump(obj, file_obj)  # Serialize and save the object to the file
     except Exception as e:
-        raise CustomException(e, sys)
-    
-def evaluate_models(X_train, y_train,X_test,y_test,models,param):
+        raise CustomException(e, sys)  # Raise CustomException if an error occurs
+
+def evaluate_models(X_train, y_train, X_test, y_test, models, param):
+    """
+    Train models, perform grid search, and evaluate their performance.
+
+    Parameters:
+        X_train (array-like): Training input features.
+        y_train (array-like): Training target labels.
+        X_test (array-like): Testing input features.
+        y_test (array-like): Testing target labels.
+        models (dict): Dictionary containing the models to be evaluated.
+        param (dict): Dictionary containing the parameter grids for grid search.
+
+    Returns:
+        dict: Dictionary containing evaluation metrics for each model.
+
+    Raises:
+        CustomException: If an error occurs during model training and evaluation.
+    """
     try:
-        report = {}
-
+        report = {}  # Initialize an empty dictionary to store evaluation metrics
+        
+        # Iterate over each model in the dictionary
         for i in range(len(list(models))):
-            model = list(models.values())[i]
-            para=param[list(models.keys())[i]]
+            model = list(models.values())[i]  # Get the model
+            para = param[list(models.keys())[i]]  # Get the parameter grid for grid search
 
+            # Perform grid search for hyperparameter tuning
             grid_search = GridSearchCV(estimator=model, param_grid=para, cv=5)
-            grid_search.fit(X_train, y_train)
-    
+            grid_search.fit(X_train, y_train)  # Fit the grid search to the training data
+            
+            # Get the best parameters and best score
             best_params = grid_search.best_params_
             best_score = grid_search.best_score_
     
-            print(f"Best Parameters for {model.__class__.__name__}: {best_params}")
-            print(f"Best Score for {model.__class__.__name__}: {best_score}\n")
-
-            #gs = GridSearchCV(model,para,cv=3)
-            #gs.fit(X_train,y_train)
-
-            #print("model is ", model)
-           # print("best_params_ is ", **gs.best_params_)
+            print(f"Best Parameters for {model.__class__.__name__}: {best_params}")  # Print the best parameters
+            print(f"Best Score for {model.__class__.__name__}: {best_score}\n")  # Print the best score
+            
+            # Set the model with the best parameters and fit it to the training data
             model.set_params(**grid_search.best_params_)
-            model.fit(X_train,y_train)
+            model.fit(X_train, y_train)
 
-            #model.fit(X_train, y_train)  # Train model
-
+            # Make predictions on the test set
             y_test_pred = model.predict(X_test)
             
             # Compute evaluation metrics
@@ -80,11 +96,11 @@ def evaluate_models(X_train, y_train,X_test,y_test,models,param):
             }
         print(report)
 
-        return report
+        return report  # Return the evaluation report
 
     except Exception as e:
-        raise CustomException(e, sys)
-    
+        raise CustomException(e, sys)  # Raise CustomException if an error occurs
+
 def load_object(file_path):
     """
     Load a Python object from a file using pickle deserialization.
@@ -100,6 +116,11 @@ def load_object(file_path):
     """
     try:
         with open(file_path, "rb") as file_obj:
-            return pickle.load(file_obj)
+            return pickle.load(file_obj)  # Deserialize
     except Exception as e:
-        raise CustomException(e, sys)
+        raise CustomException(e, sys)  # Raise CustomException if an error occurs
+
+
+
+
+

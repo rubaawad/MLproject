@@ -1,60 +1,60 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;  /* Set font family */
+    margin: 0;  /* Remove default margin */
+    padding: 0;  /* Remove default padding */
+    background-color: #f4f4f4;  /* Set background color */
 }
 
 form {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #c1c1c1;
+    max-width: 500px;  /* Set maximum width of the form */
+    margin: 20px auto;  /* Center the form horizontally with some margin */
+    padding: 20px;  /* Add padding inside the form */
+    background: #ffffff;  /* Set background color of the form */
+    border-radius: 5px;  /* Add rounded corners to the form */
+    box-shadow: 0 0 10px #c1c1c1;  /* Add shadow effect to the form */
 }
 
 h1 {
-    text-align: center;
+    text-align: center;  /* Center-align the heading */
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
+    display: block;  /* Display labels as block elements */
+    margin-bottom: 5px;  /* Add bottom margin to labels */
 }
 
 input[type="number"] {
-    width: calc(100% - 12px);
-    padding: 6px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
+    width: calc(100% - 12px);  /* Set input width to 100% minus 12 pixels for padding and border */
+    padding: 6px;  /* Add padding to the input */
+    border-radius: 5px;  /* Add rounded corners to the input */
+    border: 1px solid #ccc;  /* Add border to the input */
+    margin-bottom: 10px;  /* Add bottom margin to the input */
 }
 
 input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #4caf50;
-    color: #ffffff;
-    cursor: pointer;
+    width: 100%;  /* Set submit button width to 100% */
+    padding: 10px;  /* Add padding to the button */
+    border-radius: 5px;  /* Add rounded corners to the button */
+    border: none;  /* Remove border from the button */
+    background-color: #4caf50;  /* Set background color of the button */
+    color: #ffffff;  /* Set text color of the button */
+    cursor: pointer;  /* Change cursor to pointer on hover */
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #45a049;  /* Darken background color of the button on hover */
 }
 
 p {
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.2em;
+    text-align: center;  /* Center-align paragraphs */
+    font-weight: bold;  /* Set font weight to bold */
+    font-size: 1.2em;  /* Set font size */
 }
 
 .visible {
-    display: block;
+    display: block;  /* Display elements with class 'visible' */
 }
 
 .hidden {
-    display: none;
+    display: none;  /* Hide elements with class 'hidden' */
 }

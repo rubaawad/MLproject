@@ -4,7 +4,6 @@ from dataclasses import dataclass
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
-import pandas as np
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
@@ -18,20 +17,19 @@ from src.utils import save_object,evaluate_models
 
 @dataclass
 class ModelTrainerConfig:
-    trained_model_file_path=os.path.join("artifacts","model.pkl")
+    trained_model_file_path = os.path.join("artifacts", "model.pkl")  # Configuration for the path to save the trained model
 
 class ModelTrainer:
     def __init__(self):
-        self.model_trainer_config=ModelTrainerConfig()
-
+        self.model_trainer_config = ModelTrainerConfig()  # Initializing ModelTrainerConfig object
 
     def initiate_model_trainer(self, train_array, test_array):
         """
         Train and evaluate machine learning models based on the input data.
 
         Parameters:
-            train_array (numpy.ndarray): The training dataset.
-            test_array (numpy.ndarray): The testing dataset.
+            train_array: The training dataset.
+            test_array: The testing dataset.
 
         Returns:
             float: The accuracy score of the best model on the testing dataset.
@@ -40,23 +38,25 @@ class ModelTrainer:
             CustomException: If an error occurs during model training and evaluation.
         """
         try:
-            logging.info("Split training and test input data")
+            logging.info("Split training and test input data")  # Logging message to indicate splitting of training and test data
             X_train, y_train, X_test, y_test = (
-            train_array[:, :-1],
-            train_array[:, -1],
-            test_array[:, :-1],
-            test_array[:, -1]
-            )
+                train_array[:, :-1],
+                train_array[:, -1],
+                test_array[:, :-1],
+                test_array[:, -1]
+            )  # Splitting the input arrays into features and target variables
+
+            # Dictionary containing different classifiers
             models = {
-                "Logistic Regression": LogisticRegression(max_iter=1000),  # Increase max_iter
-                "Knn": KNeighborsClassifier(),
-                "svm": SVC(),
-                "Naive Bayes": GaussianNB(),
-                "Random Forest": RandomForestClassifier(),
-                "Decision Tree": DecisionTreeClassifier(),
+                "Logistic Regression": LogisticRegression(max_iter=1000),  # Increasing max_iter for logistic regression
+                "Knn": KNeighborsClassifier(),  # Initializing K-Nearest Neighbors Classifier
+                "Naive Bayes": GaussianNB(),  # Initializing Gaussian Naive Bayes Classifier
+                "Random Forest": RandomForestClassifier(),  # Initializing Random Forest Classifier
+                "Decision Tree": DecisionTreeClassifier(),  # Initializing Decision Tree Classifier
+                "svm": SVC()  # Initializing Support Vector Classifier
             }
 
-            # Define parameters for grid search
+            # Dictionary containing hyperparameter grids for grid search
             params = {
                 "Decision Tree": {
                     'max_depth': [None, 10, 20, 30, 40],
@@ -72,43 +72,36 @@ class ModelTrainer:
                     'max_features': ['sqrt', 'log2']
                 },
                 "svm": {
-                        'C': [0.001, 0.01, 0.1, 1, 10, 100],
-                        'kernel': ['linear', 'rbf', 'poly'],
-                        'gamma': ['scale', 'auto']
+                    'C': [0.1, 1, 10],
+                    'kernel': ['linear', 'rbf'],
+                    'gamma': ['scale', 'auto', 0.1, 1]
                 },
-                "Naive Bayes": {},
+                "Naive Bayes": {},  # No hyperparameters for Naive Bayes
                 "Knn": {
                     'n_neighbors': [3, 5, 7, 9, 11],
                     'weights': ['uniform', 'distance']
-
                 },
-
                 "Logistic Regression": {
                     'C': [0.001, 0.01, 0.1, 1, 10, 100],
                     'penalty': ['l2']
                 }
             }
 
+            # Evaluate models using cross-validation and grid search
             model_report: dict = evaluate_models(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
-                                             models=models,param=params)
+                                                  models=models, param=params)
 
-            # Now, iterate over the models in model_report to find the best model
-            best_model_name = None
-            best_model_score = float('-inf')
+            # Find the best model based on the highest score
+            best_model_name, best_model_score = max(model_report.items(),
+                                                    key=lambda x: (x[1]['test_model_accuracy'] + x[1]['test_model_f1']) / 2)
 
-            for model_name, metrics in model_report.items():
-            # Compute a score for each model (e.g., average of accuracy, precision, and F1-score)
-                score = (metrics['test_model_accuracy'] + metrics['test_model_precision'] + metrics['test_model_f1']) / 3
-    
-            # Check if this model has a higher score than the current best model
-                if score > best_model_score:
-                    best_model_score = score
-                    best_model_name = model_name
-            best_model = models[best_model_name]
-            print("bestmodel is ",best_model_name)
-            #if best_model_score < 0.6:
-             #   raise CustomException("No best model found")
-              #  logging.info(f"Best found model on both training and testing dataset")
+            # If the best model's score is less than 0.6, raise a CustomException
+            if best_model_score < 0.6:
+                raise CustomException("No best model found")
+
+            best_model = models[best_model_name]  # Select the best model
+
+            logging.info(f"Best found model on both training and testing dataset: {best_model_name}")  # Log the best model
 
             # Save the best model
             save_object(
@@ -121,7 +114,7 @@ class ModelTrainer:
 
             # Calculate accuracy score
             score = accuracy_score(y_test, predicted) * 100
-            return score
-            
+            return score  # Return the accuracy score
+
         except Exception as e:
-            raise CustomException(e,sys)
+            raise CustomException(e, sys)  # Raise CustomException if an error occurs during model training and evaluation
