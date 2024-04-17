@@ -18,34 +18,35 @@
           <h1>Diabetes Prediction Form</h1>
           <form id="predictionForm" action="/diabetes" method="post">
               <label for="Pregnancies" class="form-label">Pregnancies:</label>
-              <input type="number" id="Pregnancies" name="Pregnancies" class="form-input" value="{{ form_data['Pregnancies'] }}" required><br>
+              <input type="text" id="Pregnancies" name="Pregnancies" class="form-input" value="{{ form_data['Pregnancies'] }}" required><br>
   
               <label for="Glucose" class="form-label">Glucose:</label>
-              <input type="number" id="Glucose" name="Glucose" class="form-input" value="{{ form_data['Glucose'] }}" required><br>
+              <input type="text" id="Glucose" name="Glucose" class="form-input" value="{{ form_data['Glucose'] }}" required><br>
   
               <label for="BloodPressure" class="form-label">Blood Pressure:</label>
-              <input type="number" id="BloodPressure" name="BloodPressure" value="{{ form_data['BloodPressure'] }}" class="form-input" required><br>
+              <input type="text" id="BloodPressure" name="BloodPressure" value="{{ form_data['BloodPressure'] }}" class="form-input" required><br>
   
               <label for="SkinThickness" class="form-label">Skin Thickness:</label>
-              <input type="number" id="SkinThickness" name="SkinThickness" value="{{ form_data['SkinThickness'] }}" class="form-input" required><br>
+              <input type="text" id="SkinThickness" name="SkinThickness" value="{{ form_data['SkinThickness'] }}" class="form-input" required><br>
   
               <label for="Insulin" class="form-label">Insulin:</label>
-              <input type="number" id="Insulin" name="Insulin" class="form-input" value="{{ form_data['Insulin'] }}" required><br>
+              <input type="text" id="Insulin" name="Insulin" class="form-input" value="{{ form_data['Insulin'] }}" required><br>
   
               <label for="BMI" class="form-label">BMI:</label>
-              <input type="number" id="BMI" name="BMI" step="0.01" class="form-input" value="{{ form_data['BMI'] }}" required><br>
+              <input type="text" id="BMI" name="BMI" step="0.01" class="form-input" value="{{ form_data['BMI'] }}" required><br>
   
               <label for="DiabetesPedigreeFunction" class="form-label">Diabetes Pedigree:</label>
-              <input type="number" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction" step="0.001" class="form-input" value="{{ form_data['DiabetesPedigreeFunction'] }}" required><br>
+              <input type="text" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction" step="0.001" class="form-input" value="{{ form_data['DiabetesPedigreeFunction'] }}" required><br>
   
               <label for="Age" class="form-label">Age:</label>
-              <input type="number" id="Age" name="Age" class="form-input" value="{{ form_data['Age'] }}" required><br>
-  
+              <input type="text" id="Age" name="Age" class="form-input" value="{{ form_data['Age'] }}" required><br>
+
+              <br></br>
               <input type="submit" value="Predict" class="form-submit">
           </form>
           <span id="predictionResult" class='{{"visible" if prediction else "hidden"}}'>
-            <h1>Diabetes Prediction Result</h1>
-            <p  style="color: greenyellow !important;">The prediction result is: {{ prediction }}</p>
+            <h1 style="color: white !important;">Diabetes Prediction Result</h1>
+            <p  style="color: yellow !important;">The prediction result is: {{ prediction }}</p>
         </span>
       </div>
   </body>

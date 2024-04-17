@@ -15,13 +15,12 @@ Sure, here's a README file for your MLproject GitHub project:
     # Install the required dependencies:
         pip install -r requirements.txt
 # Notebooks
+    In src/components/notebook/data you can find these files:
+
     # EDA Notebook
         EDA DIABETES PERFORMANCE.ipynb: Exploratory Data Analysis notebook for analyzing the dataset.
     # Model Training Notebook
         MODEL TRAINING.ipynb: Notebook for training machine learning models.
-# Usage
-    Once installed, you can use the project to train machine learning models for predicting diabetes. Run the main script data_ingestion.py to execute the project:
-    python .\src\components\data_ingestion.py
 # Data
     The project uses the Diabetes Dataset from Kaggle, which contains various health-related features such as glucose level, blood pressure, and BMI. The dataset is preprocessed before training the models.
 
@@ -29,7 +28,7 @@ Sure, here's a README file for your MLproject GitHub project:
     The project employs several machine learning models, including:
     Logistic Regression
     K-Nearest Neighbors
-    Naive Bayes
+    Gradient Boosting
     Support Vector Machine
     Decision Tree
     Random Forest
@@ -42,15 +41,12 @@ Sure, here's a README file for your MLproject GitHub project:
     Specificity
     F1-score
     ROC AUC
-    Cross-Validation Accuracy
-# Results
-    After training and evaluating the models, the results are summarized in the README file. Additionally, confusion matrices and other visualizations are provided to analyze the performance of each model.
 # Web Application
     The project includes a web application for predicting diabetes using the trained machine learning models. To run the web application:
 
     Navigate to the templates directory.
     Install Flask if not already installed: pip install Flask.
-    Run the Flask application: python app.py.
+    Run the Flask application: python application.py.
     Access the web application in your browser at http://localhost:5000.
 # Docker
     Usage Instructions:
@@ -78,7 +74,7 @@ Sure, here's a README file for your MLproject GitHub project:
 
 
 # Contact
-    For any questions or feedback, please contact the project maintainer:
+    For any questions or feedback, please contact:
 
     Ruba Awad
     Email: rubaabdalla44@gmail.com

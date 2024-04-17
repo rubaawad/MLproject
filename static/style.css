@@ -23,7 +23,7 @@ label {
     margin-bottom: 5px;  /* Add bottom margin to labels */
 }
 
-input[type="number"] {
+input[type="text"] {
     width: calc(100% - 12px);  /* Set input width to 100% minus 12 pixels for padding and border */
     padding: 6px;  /* Add padding to the input */
     border-radius: 5px;  /* Add rounded corners to the input */
