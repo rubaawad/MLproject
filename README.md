@@ -1,17 +1,17 @@
 
-Sure, here's a README file for your MLproject GitHub project:
+Sure, here's a README file for your daibetes_prediction_project GitHub project:
 
-# MLproject
-    MLproject is a machine learning project that aims to predict diabetes based on various health-related features. It utilizes different machine learning algorithms to build predictive models and evaluates their performance using various metrics.
+# daibetes_prediction_project
+    daibetes_prediction_project is a machine learning project that aims to predict diabetes based on various health-related features. It utilizes different machine learning algorithms to build predictive models and evaluates their performance using various metrics.
 
 
 # Installation
     To run the project locally, follow these steps:
 
     # Clone the repository:
-        git clone https://github.com/rubaawad/MLproject.git
+        git clone https://github.com/rubaawad/daibetes_prediction_project.git
     # Navigate to the project directory:
-        cd MLproject
+        cd daibetes_prediction_project
     # Install the required dependencies:
         pip install -r requirements.txt
 # Notebooks

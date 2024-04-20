@@ -15,7 +15,14 @@
    </head>
    <body>
       <div class="container">
-          <h1>Diabetes Prediction Form</h1>
+         <span id="predictionResult" class='{{"hidden" if prediction else "visible"}}'>
+            <h1>Diabetes Prediction Form</h1>
+        </span>
+          
+          <span id="predictionResult" class='{{"visible" if prediction else "hidden"}}'>
+            <h1 >Diabetes Prediction Result</h1>
+            <p  style="color: white !important;">The prediction result is: {{ prediction }}</p>
+        </span>
           <form id="predictionForm" action="/diabetes" method="post">
               <label for="Pregnancies" class="form-label">Pregnancies:</label>
               <input type="text" id="Pregnancies" name="Pregnancies" class="form-input" value="{{ form_data['Pregnancies'] }}" required><br>
@@ -44,10 +51,7 @@
               <br></br>
               <input type="submit" value="Predict" class="form-submit">
           </form>
-          <span id="predictionResult" class='{{"visible" if prediction else "hidden"}}'>
-            <h1 style="color: white !important;">Diabetes Prediction Result</h1>
-            <p  style="color: yellow !important;">The prediction result is: {{ prediction }}</p>
-        </span>
+          
       </div>
   </body>
   </html>

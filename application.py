@@ -72,19 +72,17 @@ def predict_datapoint():
     else:
         print("call CustomData")
         # Create CustomData object with form data
-        data = CustomData(
-            Pregnancies=float(request.form.get('Pregnancies')),
-            Glucose=float(request.form.get('Glucose')),
-            BloodPressure=float(request.form.get('BloodPressure')),
-            SkinThickness=float(request.form.get('SkinThickness')),
-            Insulin=float(request.form.get('Insulin')),
-            BMI=float(request.form.get('BMI')),
-            DiabetesPedigreeFunction=float(request.form.get('DiabetesPedigreeFunction')),
-            Age=float(request.form.get('Age'))
-        )
-        print(data.__dict__)
+        Pregnancies=float(request.form.get('Pregnancies'))
+        Glucose=float(request.form.get('Glucose'))
+        BloodPressure=float(request.form.get('BloodPressure'))
+        SkinThickness=float(request.form.get('SkinThickness'))
+        Insulin=float(request.form.get('Insulin'))
+        BMI=float(request.form.get('BMI'))
+        DiabetesPedigreeFunction=float(request.form.get('DiabetesPedigreeFunction'))
+        Age=float(request.form.get('Age'))     
+        data = (Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age)
         # Perform prediction
-        prediction = make_predictions(scaler, [data.Pregnancies, data.Glucose, data.BloodPressure, data.SkinThickness, data.Insulin, data.BMI, data.DiabetesPedigreeFunction, data.Age])
+        prediction = make_predictions(scaler, data)
         print('predictions are: ', prediction)
         # Translate prediction to human-readable format
         prediction_text = "The person is likely to have Diabetes in the next 5 years" if prediction[0] == 1 else "The person is NOT likely to have Diabetes in the next 5 years"
