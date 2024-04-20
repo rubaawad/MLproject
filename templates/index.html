@@ -21,7 +21,7 @@
           
           <span id="predictionResult" class='{{"visible" if prediction else "hidden"}}'>
             <h1 >Diabetes Prediction Result</h1>
-            <p  style="color: white !important;">The prediction result is: {{ prediction }}</p>
+            <p  style="color: white !important;">{{ prediction }}</p>
         </span>
           <form id="predictionForm" action="/diabetes" method="post">
               <label for="Pregnancies" class="form-label">Pregnancies:</label>
